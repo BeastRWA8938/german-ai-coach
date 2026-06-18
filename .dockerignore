@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.agents
+.DS_Store
+Dockerfile
+docker-compose.yml
+nginx.conf
+.dockerignore
