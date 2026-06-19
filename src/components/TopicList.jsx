@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Play, BookOpen, Star, Sparkles } from 'lucide-react';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
+import ChevronUp from 'lucide-react/dist/esm/icons/chevron-up';
+import Play from 'lucide-react/dist/esm/icons/play';
+import BookOpen from 'lucide-react/dist/esm/icons/book-open';
+import Star from 'lucide-react/dist/esm/icons/star';
+import Sparkles from 'lucide-react/dist/esm/icons/sparkles';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import { VOCABULARY_CLUSTERS } from '../utils/gemini';
 
 export default function TopicList({ currentLevel, topics, onStartPractice, onBackToDashboard }) {
   const activeTopics = topics[currentLevel] || [];
@@ -36,6 +43,7 @@ export default function TopicList({ currentLevel, topics, onStartPractice, onBac
           activeTopics.map((topic) => {
             const isExpanded = expandedTopic === topic.id;
             const topicScore = Math.round((topic.accuracy * topic.confidence) / 100);
+            const isDecaying = topic.attempts > 0 && (topic.confidence < 75 || (topic.lastPracticed && (new Date() - new Date(topic.lastPracticed)) / (1000 * 60 * 60 * 24) > 5));
             
             return (
               <div 
@@ -45,6 +53,11 @@ export default function TopicList({ currentLevel, topics, onStartPractice, onBac
                 <div 
                   className="topic-item-summary" 
                   onClick={() => toggleExpandTopic(topic.id)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleExpandTopic(topic.id); } }}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isExpanded}
+                  aria-label={`${topic.name} - ${topicScore}% mastery. Click to ${isExpanded ? 'collapse' : 'expand'} details.`}
                 >
                   <div className="topic-name-section">
                     <span className="star-icon">
@@ -54,7 +67,14 @@ export default function TopicList({ currentLevel, topics, onStartPractice, onBac
                         stroke={topicScore > 80 ? 'var(--accent)' : 'currentColor'} 
                       />
                     </span>
-                    <h4>{topic.name}</h4>
+                    <h4>
+                      {topic.name}
+                      {isDecaying && (
+                        <span className="decaying-badge" title="Confidence has decayed. Practice this topic to refresh!">
+                          <TrendingDown size={11} style={{ marginRight: '3px' }} /> Decaying
+                        </span>
+                      )}
+                    </h4>
                   </div>
 
                   <div className="topic-item-meta">
@@ -128,6 +148,30 @@ export default function TopicList({ currentLevel, topics, onStartPractice, onBac
                               </div>
                             </div>
                           ))}
+                        </div>
+                      </div>
+
+                      {/* Thematic Vocabulary Column */}
+                      <div className="details-vocab-col">
+                        <h5>Thematic Vocabulary</h5>
+                        <p className="vocab-desc">Key units textbook vocabulary:</p>
+                        <div className="vocab-chips-container">
+                          {(() => {
+                            const rawVocabList = VOCABULARY_CLUSTERS[currentLevel]?.[topic.id] || [];
+                            if (rawVocabList.length === 0) {
+                              return <span className="vocab-empty">No vocabulary cluster defined for this topic.</span>;
+                            }
+                            return rawVocabList.map((item, idx) => {
+                              const [german, english] = item.split(' (');
+                              const cleanedEnglish = english ? english.replace(')', '') : '';
+                              return (
+                                <div key={idx} className="vocab-chip-item">
+                                  <span className="vocab-german">{german}</span>
+                                  {cleanedEnglish && <span className="vocab-english">{cleanedEnglish}</span>}
+                                </div>
+                              );
+                            });
+                          })()}
                         </div>
                       </div>
                     </div>

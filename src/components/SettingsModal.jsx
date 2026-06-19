@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { X, Eye, EyeOff, Key, Database, RefreshCw, AlertCircle, Save } from 'lucide-react';
+import X from 'lucide-react/dist/esm/icons/x';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import EyeOff from 'lucide-react/dist/esm/icons/eye-off';
+import Key from 'lucide-react/dist/esm/icons/key';
+import Database from 'lucide-react/dist/esm/icons/database';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
+import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
+import Save from 'lucide-react/dist/esm/icons/save';
 
 export default function SettingsModal({ isOpen, onClose, settings, onSaveSettings, onSyncNow }) {
   const [apiKey, setApiKey] = useState(settings.apiKey || '');
@@ -8,6 +15,10 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
   const [syncEnabled, setSyncEnabled] = useState(settings.syncEnabled || false);
 
   if (!isOpen) return null;
+
+  const handleEscKey = (e) => {
+    if (e.key === 'Escape') onClose();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +31,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" onKeyDown={handleEscKey} role="dialog" aria-modal="true" aria-label="Settings">
       <div className="modal-content glass-card animate-fade-in">
         <div className="modal-header">
           <h2 className="modal-title">
@@ -85,7 +96,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
           {/* Sync Section */}
           <div className="settings-section">
             <h3>
-              <Database size={16} /> Cloud Storage & Synchronization
+              <Database size={16} /> Cloud Storage & Synchronization <span className="coming-soon-badge">Coming Soon</span>
             </h3>
             <p className="settings-help-text">
               Store your learning statistics and practice history in your own Google Drive.
@@ -98,7 +109,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
                   onChange={(e) => setSyncEnabled(e.target.checked)}
                   className="sync-checkbox"
                 />
-                <span className="switch-text">Enable Google Drive Sync</span>
+                <span className="switch-text">Enable Google Drive Sync <span style={{ opacity: 0.7, fontSize: '0.9em' }}>(Coming Soon)</span></span>
               </label>
 
               {syncEnabled && (
@@ -108,7 +119,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
                   className="navbar-btn sync-btn-now"
                 >
                   <RefreshCw size={14} className="spin-on-sync" />
-                  Sync Now
+                  Sync Now (Coming Soon)
                 </button>
               )}
             </div>

@@ -1,16 +1,14 @@
 import React from 'react';
-import { 
-  TrendingDown, 
-  Award, 
-  AlertTriangle, 
-  Calendar, 
-  Play, 
-  RefreshCw, 
-  BookOpen, 
-  ChevronRight, 
-  Gauge, 
-  CheckCircle2 
-} from 'lucide-react';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import Award from 'lucide-react/dist/esm/icons/award';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
+import Play from 'lucide-react/dist/esm/icons/play';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
+import BookOpen from 'lucide-react/dist/esm/icons/book-open';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import Gauge from 'lucide-react/dist/esm/icons/gauge';
+import CheckCircle2 from 'lucide-react/dist/esm/icons/check-circle-2';
 
 export default function Dashboard({ 
   currentLevel, 
@@ -45,7 +43,7 @@ export default function Dashboard({
       {/* Hero Header Dashboard */}
       <section className="dashboard-hero glass-card">
         <div className="hero-welcome">
-          <h2>Guten Tag! 📚</h2>
+          <h2><BookOpen size={28} className="title-icon" /> Guten Tag!</h2>
           <p>Ready to level up your German? Continuous topic-focused practice is the key to retention.</p>
           <div className="hero-cta-wrapper">
             <button 
@@ -121,10 +119,18 @@ export default function Dashboard({
             ) : (
               activeTopics.map((topic) => {
                 const topicScore = Math.round((topic.accuracy * topic.confidence) / 100);
+                const isDecaying = topic.attempts > 0 && (topic.confidence < 75 || (topic.lastPracticed && (new Date() - new Date(topic.lastPracticed)) / (1000 * 60 * 60 * 24) > 5));
                 return (
                   <div key={topic.id} className="topic-card-row">
                     <div className="topic-row-info">
-                      <h4>{topic.name}</h4>
+                      <h4>
+                        {topic.name}
+                        {isDecaying && (
+                          <span className="decaying-badge" title="Confidence has decayed. Practice this topic to refresh!">
+                            <TrendingDown size={11} style={{ marginRight: '3px' }} /> Decaying
+                          </span>
+                        )}
+                      </h4>
                       <div className="topic-row-stats">
                         <span>Accuracy: <strong>{topic.accuracy}%</strong></span>
                         <span className="separator">•</span>

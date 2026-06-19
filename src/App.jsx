@@ -8,22 +8,26 @@ import './App.css';
 
 const INITIAL_TOPICS = {
   A1: [
-    { id: 'family', name: 'Family Vocabulary', accuracy: 85, confidence: 90, attempts: 20, lastPracticed: '2026-06-15', masteryScore: 76, subskills: { vocabulary: 85, relationships: 85 } },
-    { id: 'numbers', name: 'Numbers & Counting', accuracy: 90, confidence: 80, attempts: 15, lastPracticed: '2026-06-12', masteryScore: 72, subskills: { digits: 95, spelling: 85 } },
-    { id: 'personal_pronouns', name: 'Personal Pronouns', accuracy: 75, confidence: 70, attempts: 25, lastPracticed: '2026-06-10', masteryScore: 52, subskills: { nominative: 85, accusative: 65 } },
-    { id: 'akkusativ', name: 'Akkusativ Case', accuracy: 78, confidence: 60, attempts: 30, lastPracticed: '2026-06-14', masteryScore: 47, subskills: { articles: 80, pronouns: 76 } },
-    { id: 'dativ', name: 'Dativ Case', accuracy: 65, confidence: 45, attempts: 18, lastPracticed: '2026-06-16', masteryScore: 29, subskills: { articles: 70, pronouns: 60 } },
+    { id: 'family', name: 'Family Vocabulary', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { vocabulary: 0, relationships: 0 } },
+    { id: 'numbers', name: 'Numbers & Counting', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { digits: 0, spelling: 0 } },
+    { id: 'personal_pronouns', name: 'Personal Pronouns', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { nominative: 0, accusative: 0 } },
+    { id: 'akkusativ', name: 'Akkusativ Case', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { articles: 0, pronouns: 0 } },
+    { id: 'dativ', name: 'Dativ Case', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { articles: 0, pronouns: 0 } },
+    { id: 'trennbare_verben', name: 'Trennbare Verben', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { prefixes: 0, sentence_order: 0 } },
+    { id: 'perfekt', name: 'Perfekt Tense', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { auxiliary: 0, participle: 0 } },
+    { id: 'modalverben', name: 'Modalverben', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { conjugation: 0, syntax: 0 } },
   ],
   A2: [
-    { id: 'trennbare_verben', name: 'Trennbare Verben', accuracy: 70, confidence: 65, attempts: 20, lastPracticed: '2026-06-17', masteryScore: 45, subskills: { prefixes: 75, sentence_order: 65 } },
-    { id: 'perfekt', name: 'Perfekt Tense', accuracy: 55, confidence: 40, attempts: 15, lastPracticed: '2026-06-11', masteryScore: 22, subskills: { auxiliary: 60, participle: 50 } },
-    { id: 'wechselpraepositionen', name: 'Wechselpräpositionen', accuracy: 48, confidence: 30, attempts: 12, lastPracticed: '2026-06-18', masteryScore: 14, subskills: { dativ_wo: 50, akkusativ_wohin: 46 } },
-    { id: 'adjektivdeklination', name: 'Adjektivdeklination', accuracy: 40, confidence: 25, attempts: 10, lastPracticed: '2026-06-05', masteryScore: 10, subskills: { weak_inflection: 45, strong_inflection: 35 } },
+    { id: 'wechselpraepositionen', name: 'Wechselpräpositionen', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { dativ_wo: 0, akkusativ_wohin: 0 } },
+    { id: 'adjektivdeklination', name: 'Adjektivdeklination', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { weak_inflection: 0, strong_inflection: 0 } },
+    { id: 'nebensaetze_a2', name: 'Subordinating Clauses (weil/dass)', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { weil_dass: 0 } },
+    { id: 'relativsaetze', name: 'Relativsätze', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { nominative: 0, accusative: 0 } },
   ],
   B1: [
     { id: 'passiv', name: 'Passiv Tense', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { werden: 0, von_durch: 0 } },
     { id: 'konjunktiv_2', name: 'Konjunktiv II', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { wunschsaetze: 0, hoeflichkeit: 0 } },
-    { id: 'nebensaetze', name: 'Subordinating Clauses', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { weil_dass: 0, obwohl_trotzdem: 0 } },
+    { id: 'nebensaetze', name: 'Subordinating Clauses (obwohl/trotzdem)', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { obwohl_trotzdem: 0 } },
+    { id: 'relativsaetze_b1', name: 'Relativsätze (mit Präpositionen)', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { prepositional: 0, was_wo: 0 } },
   ],
   B2: [
     { id: 'nominalstil', name: 'Nominalstil', accuracy: 0, confidence: 0, attempts: 0, lastPracticed: null, masteryScore: 0, subskills: { preposition_noun: 0, verb_noun_conversion: 0 } },
@@ -45,19 +49,19 @@ function App() {
   });
 
   const [topics, setTopics] = useState(() => {
-    const saved = localStorage.getItem('projektdeutsch_topics');
+    const saved = localStorage.getItem('projektdeutsch_topics_v2');
     return saved ? JSON.parse(saved) : INITIAL_TOPICS;
   });
 
   // Save changes to localStorage
   useEffect(() => {
-    localStorage.setItem('projektdeutsch_topics', JSON.stringify(topics));
+    localStorage.setItem('projektdeutsch_topics_v2', JSON.stringify(topics));
   }, [topics]);
 
   useEffect(() => {
     localStorage.setItem('projektdeutsch_settings', JSON.stringify(settings));
     if (settings.syncEnabled) {
-      setSyncStatus('synced');
+      setSyncStatus('coming_soon');
     } else {
       setSyncStatus('local');
     }
@@ -129,56 +133,53 @@ function App() {
   };
 
   const handleFinishSession = (sessionAnswers, topicId, isSmartPracticeFlag) => {
-    const correctCount = sessionAnswers.filter(ans => ans.isCorrect).length;
-    const sessionAccuracy = (correctCount / sessionAnswers.length) * 100;
     const todayStr = new Date().toISOString().split('T')[0];
 
     setTopics(prevTopics => {
       const updated = { ...prevTopics };
       
-      if (isSmartPracticeFlag) {
-        // Smart practice impacts multiple topics practiced
-        // For simplicity, we boost overall level confidence slightly
-        Object.keys(updated).forEach(lvl => {
-          updated[lvl] = updated[lvl].map(topic => {
-            // Find if this topic was in the session
-            const topicAnswers = sessionAnswers.filter(ans => ans.question.id.startsWith(topic.id.slice(0, 3)));
-            if (topicAnswers.length === 0) return topic;
+      // Update historical metrics for each level and topic that was practiced
+      Object.keys(updated).forEach(lvl => {
+        updated[lvl] = updated[lvl].map(topic => {
+          const isTargeted = isSmartPracticeFlag 
+            ? sessionAnswers.some(ans => ans.question.topicId === topic.id)
+            : topic.id === topicId && lvl === currentLevel;
 
-            const tCorrect = topicAnswers.filter(a => a.isCorrect).length;
-            const tAcc = (tCorrect / topicAnswers.length) * 100;
+          if (!isTargeted) return topic;
 
-            const newAttempts = topic.attempts + topicAnswers.length;
-            const newAccuracy = Math.round(((topic.accuracy * topic.attempts) + (tAcc * topicAnswers.length)) / newAttempts);
-            const newConfidence = 100; // Refreshed on practice
-            const newMastery = Math.round((newAccuracy * newConfidence) / 100);
+          // Filter session answers belonging to this specific topic
+          const topicAnswers = sessionAnswers.filter(ans => ans.question.topicId === topic.id);
+          if (topicAnswers.length === 0) return topic;
 
-            return {
-              ...topic,
-              accuracy: newAccuracy,
-              confidence: newConfidence,
-              attempts: newAttempts,
-              lastPracticed: todayStr,
-              masteryScore: newMastery
-            };
-          });
-        });
-      } else {
-        // Single topic practice update
-        updated[currentLevel] = updated[currentLevel].map(topic => {
-          if (topic.id !== topicId) return topic;
+          const tCorrectCount = topicAnswers.filter(ans => ans.isCorrect).length;
+          const tAccuracy = (tCorrectCount / topicAnswers.length) * 100;
 
-          const newAttempts = topic.attempts + sessionAnswers.length;
-          const newAccuracy = Math.round(((topic.accuracy * topic.attempts) + (sessionAccuracy * sessionAnswers.length)) / newAttempts);
-          const newConfidence = 100; // Replaced confidence back to 100% on direct practice
+          // Update accuracy & attempts
+          const newAttempts = topic.attempts + topicAnswers.length;
+          const newAccuracy = Math.round(((topic.accuracy * topic.attempts) + (tAccuracy * topicAnswers.length)) / newAttempts);
+          const newConfidence = 100; // Practice refreshes confidence to 100%
           const newMastery = Math.round((newAccuracy * newConfidence) / 100);
 
-          // Update subskills mock percentages based on correctness
+          // Update subskills based on actual answers for each subskill
           const subskillsCopy = { ...topic.subskills };
           Object.keys(subskillsCopy).forEach(sub => {
-            // Give a small random/positive boost based on accuracy
-            const delta = sessionAccuracy > 70 ? 5 : sessionAccuracy < 40 ? -5 : 0;
-            subskillsCopy[sub] = Math.max(10, Math.min(100, subskillsCopy[sub] + delta));
+            const subAnswers = topicAnswers.filter(ans => ans.question.subskill === sub);
+            if (subAnswers.length > 0) {
+              const subCorrect = subAnswers.filter(ans => ans.isCorrect).length;
+              const subAccuracy = (subCorrect / subAnswers.length) * 100;
+              
+              const currentScore = subskillsCopy[sub] || 0;
+              if (topic.attempts === 0) {
+                subskillsCopy[sub] = Math.round(subAccuracy);
+              } else {
+                // Blend historical accuracy with current practice session accuracy
+                const historicalWeight = topic.attempts;
+                const newWeight = subAnswers.length;
+                subskillsCopy[sub] = Math.round(
+                  ((currentScore * historicalWeight) + (subAccuracy * newWeight)) / (historicalWeight + newWeight)
+                );
+              }
+            }
           });
 
           return {
@@ -191,8 +192,7 @@ function App() {
             subskills: subskillsCopy
           };
         });
-      }
-
+      });
       return updated;
     });
 
@@ -204,10 +204,9 @@ function App() {
   };
 
   const handleSyncNow = () => {
-    setSyncStatus('syncing');
-    setTimeout(() => {
-      setSyncStatus('synced');
-    }, 1500);
+    // Google Drive sync is not yet implemented
+    // This is a placeholder for future integration
+    alert("Cloud Sync is coming soon!");
   };
 
   const getActiveTopicName = () => {
@@ -254,6 +253,9 @@ function App() {
             topicName={getActiveTopicName()}
             isSmartPractice={isSmartPractice}
             apiKey={settings.apiKey}
+            selectedModel={settings.selectedModel}
+            topics={topics}
+            currentLevel={currentLevel}
             onFinishSession={handleFinishSession}
             onBackToDashboard={() => setCurrentView('dashboard')}
           />

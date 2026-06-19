@@ -6,6 +6,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "dem",
       accepted_answers: ["dem", "meinem", "einem"],
       grammar_point: "Dativ masculine article/pronoun",
+      subskill: "articles",
       difficulty: "easy",
       explanation: "The verb 'schenken' takes a Dativ indirect object (recipient) and an Akkusativ direct object. Since 'Bruder' is masculine, the Dativ article is 'dem' (or possessive 'meinem')."
     },
@@ -15,6 +16,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "der",
       accepted_answers: ["der", "einer", "dieser", "meiner"],
       grammar_point: "Dativ feminine article",
+      subskill: "articles",
       difficulty: "easy",
       explanation: "The verb 'helfen' always governs the Dativ case. Since 'Frau' is feminine, the Dativ definite article is 'der'."
     },
@@ -24,6 +26,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "der",
       accepted_answers: ["der", "seiner", "einer"],
       grammar_point: "Dativ after preposition 'zu'",
+      subskill: "articles",
       difficulty: "medium",
       explanation: "The preposition 'zu' always requires the Dativ case. 'Mutter' is feminine, so it becomes 'der Mutter' (or 'seiner Mutter')."
     },
@@ -33,6 +36,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "Ihnen",
       accepted_answers: ["Ihnen"],
       grammar_point: "Dativ personal pronouns",
+      subskill: "pronouns",
       difficulty: "medium",
       explanation: "The idiomatic expression 'Wie geht es...' requires a Dativ pronoun. For formal 'you', the pronoun is 'Ihnen' (capitalized)."
     },
@@ -42,6 +46,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "dem",
       accepted_answers: ["dem", "einem", "diesem", "meinem"],
       grammar_point: "Dativ neuter article",
+      subskill: "articles",
       difficulty: "medium",
       explanation: "The verb 'gefallen' (to please/like) requires a Dativ object. Since 'Kind' is neuter, the Dativ definite article is 'dem'."
     }
@@ -53,6 +58,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "den",
       accepted_answers: ["den", "meinen", "einen"],
       grammar_point: "Akkusativ masculine article",
+      subskill: "articles",
       difficulty: "easy",
       explanation: "The verb 'besuchen' takes a direct object in the Akkusativ case. For a masculine noun like 'Freund', the article becomes 'den' (or possessive 'meinen')."
     },
@@ -62,6 +68,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "den",
       accepted_answers: ["den", "einen"],
       grammar_point: "Akkusativ after preposition 'ohne'",
+      subskill: "articles",
       difficulty: "medium",
       explanation: "The preposition 'ohne' (without) always requires the Akkusativ case. 'Löffel' is masculine, so it becomes 'den Löffel'."
     },
@@ -71,6 +78,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "die",
       accepted_answers: ["die", "eine", "diese", "meine"],
       grammar_point: "Akkusativ feminine article",
+      subskill: "articles",
       difficulty: "easy",
       explanation: "'Kaufen' takes an Akkusativ object. Since 'Tasche' is feminine, the Akkusativ definite article remains 'die'."
     }
@@ -82,6 +90,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "der",
       accepted_answers: ["der", "einer", "dieser", "meiner"],
       grammar_point: "Two-way preposition (Wechselpräposition) - Dativ for location",
+      subskill: "dativ_wo",
       difficulty: "medium",
       explanation: "The picture is already hanging (stationary position, answer to 'Wo?'). Therefore, 'an' requires the Dativ case. 'Wand' is feminine, so we use 'der'."
     },
@@ -91,6 +100,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "die",
       accepted_answers: ["die"],
       grammar_point: "Two-way preposition (Wechselpräposition) - Akkusativ for movement",
+      subskill: "akkusativ_wohin",
       difficulty: "medium",
       explanation: "This describes an action/movement of placing the picture (direction, answer to 'Wohin?'). Therefore, 'an' requires the Akkusativ case. 'Wand' is feminine, so we use 'die'."
     },
@@ -100,6 +110,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "dem",
       accepted_answers: ["dem", "meinem", "einem"],
       grammar_point: "Wechselpräposition - Dativ for location",
+      subskill: "dativ_wo",
       difficulty: "easy",
       explanation: "The sleeping cat is stationary under the bed (Wo?). Therefore, we use Dativ. Neuter 'Bett' takes 'dem' in Dativ."
     }
@@ -111,6 +122,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "Eltern",
       accepted_answers: ["Eltern"],
       grammar_point: "Family vocabulary",
+      subskill: "vocabulary",
       difficulty: "easy",
       explanation: "Father and mother are the parents (Eltern)."
     },
@@ -120,6 +132,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "Tante",
       accepted_answers: ["Tante"],
       grammar_point: "Family vocabulary",
+      subskill: "relationships",
       difficulty: "easy",
       explanation: "The sister of my mother is my aunt (Tante)."
     }
@@ -131,6 +144,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "fünf",
       accepted_answers: ["fünf", "5"],
       grammar_point: "German numbers",
+      subskill: "spelling",
       difficulty: "easy",
       explanation: "Two plus three is five (fünf)."
     }
@@ -142,6 +156,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "Ich",
       accepted_answers: ["Ich"],
       grammar_point: "Personal pronoun nominative",
+      subskill: "nominative",
       difficulty: "easy",
       explanation: "The first-person singular nominative pronoun is 'Ich' (I)."
     }
@@ -153,6 +168,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "an",
       accepted_answers: ["an"],
       grammar_point: "Separable prefix placement",
+      subskill: "prefixes",
       difficulty: "easy",
       explanation: "The verb is 'ankommen' (to arrive). In simple present tense main clauses, the prefix 'an' separates and moves to the very end of the sentence."
     }
@@ -164,6 +180,7 @@ export const MOCK_QUESTIONS = {
       primary_answer: "gelesen",
       accepted_answers: ["gelesen"],
       grammar_point: "Perfekt past participle",
+      subskill: "participle",
       difficulty: "medium",
       explanation: "The Perfekt tense of 'lesen' is built with the auxiliary verb 'haben' and the past participle 'gelesen' at the end."
     }
@@ -175,8 +192,117 @@ export const MOCK_QUESTIONS = {
       primary_answer: "alter",
       accepted_answers: ["alter"],
       grammar_point: "Mixed adjective declension",
+      subskill: "strong_inflection",
       difficulty: "hard",
       explanation: "Following the indefinite article 'ein', a masculine nominative adjective takes the strong ending '-er' (alter Mann)."
+    }
+  ],
+  modalverben: [
+    {
+      id: 'mod_1',
+      sentence: "Ich ___ Deutsch lernen (wollen).",
+      primary_answer: "will",
+      accepted_answers: ["will"],
+      grammar_point: "Modal verb conjugation",
+      subskill: "conjugation",
+      difficulty: "easy",
+      explanation: "For first-person singular 'ich', the modal verb 'wollen' conjugates as 'will' in the present tense."
+    }
+  ],
+  nebensaetze_a2: [
+    {
+      id: 'ns_a2_1',
+      sentence: "Ich bleibe heute im Bett, weil ich krank ___.",
+      primary_answer: "bin",
+      accepted_answers: ["bin"],
+      grammar_point: "Subordinate clause verb placement",
+      subskill: "weil_dass",
+      difficulty: "easy",
+      explanation: "Subordinating conjunctions like 'weil' send the conjugated verb ('bin') to the very end of the subclause."
+    }
+  ],
+  relativsaetze: [
+    {
+      id: 'rel_1',
+      sentence: "Das ist der Mann, ___ den Hund hat (nominative).",
+      primary_answer: "der",
+      accepted_answers: ["der"],
+      grammar_point: "Relative pronoun masculine nominative",
+      subskill: "nominative",
+      difficulty: "medium",
+      explanation: "The relative clause describes 'der Mann'. For a masculine nominative subject in a relative clause, the relative pronoun is 'der'."
+    }
+  ],
+  relativsaetze_b1: [
+    {
+      id: 'rel_b1_1',
+      sentence: "Das ist das Haus, in ___ ich wohne (neuter, dativ).",
+      primary_answer: "dem",
+      accepted_answers: ["dem"],
+      grammar_point: "Relative pronoun with preposition",
+      subskill: "prepositional",
+      difficulty: "medium",
+      explanation: "The preposition 'in' describes static location, governing the Dativ case. Neuter 'Haus' becomes 'dem' relative pronoun in Dativ."
+    }
+  ],
+  passiv: [
+    {
+      id: 'pas_1',
+      sentence: "Die Bewerbung ___ vom Chef unterschrieben.",
+      primary_answer: "wird",
+      accepted_answers: ["wird", "wurde"],
+      grammar_point: "Vorgangspassiv present tense",
+      subskill: "werden",
+      difficulty: "medium",
+      explanation: "Present passive is built with 'werden' conjugated + past participle at the end. For singular 'Bewerbung', the verb is 'wird'."
+    }
+  ],
+  konjunktiv_2: [
+    {
+      id: 'k2_1',
+      sentence: "Wenn ich viel Geld hätte, ___ ich eine Weltreise machen.",
+      primary_answer: "würde",
+      accepted_answers: ["würde"],
+      grammar_point: "Konjunktiv II conditional",
+      subskill: "wunschsaetze",
+      difficulty: "medium",
+      explanation: "For conditional sentences ('If I had... I would...'), the 'würde + Infinitiv' structure is used. First person singular is 'würde'."
+    }
+  ],
+  nebensaetze: [
+    {
+      id: 'ns_1',
+      sentence: "Wir gehen wandern, ___ es regnet.",
+      primary_answer: "obwohl",
+      accepted_answers: ["obwohl"],
+      grammar_point: "Concessive subordinate clause",
+      subskill: "obwohl_trotzdem",
+      difficulty: "medium",
+      explanation: "'Obwohl' (although) is a subordinating conjunction that introduces a concessive clause and sends the conjugated verb to the end."
+    }
+  ],
+  nominalstil: [
+    {
+      id: 'nom_1',
+      sentence: "Durch die Durchführung der ___ stieg das Interesse (Forschung).",
+      primary_answer: "Forschung",
+      accepted_answers: ["Forschung"],
+      grammar_point: "Nominalstil genitive noun",
+      subskill: "preposition_noun",
+      difficulty: "hard",
+      explanation: "Nominalstil often uses noun-noun compound or genitive noun structures like 'Durchführung der Forschung' (conducting the research)."
+    }
+  ],
+  passiversatz: [
+    {
+      id: 'pe_1',
+      sentence: "Das Konzept zur Nachhaltigkeit lässt sich schwer ___ (realisieren).",
+      primary_answer: "realisieren",
+      accepted_answers: ["realisieren"],
+      grammar_point: "Passive replacement with 'sich lassen'",
+      subskill: "sich_lassen",
+      difficulty: "hard",
+      explanation: "The structure 'sich lassen + Infinitiv' is a common passive replacement showing capability. 'lässt sich schwer realisieren' means 'can be realized with difficulty'."
     }
   ]
 };
