@@ -4,7 +4,6 @@ import ChevronUp from 'lucide-react/dist/esm/icons/chevron-up';
 import Play from 'lucide-react/dist/esm/icons/play';
 import BookOpen from 'lucide-react/dist/esm/icons/book-open';
 import Star from 'lucide-react/dist/esm/icons/star';
-import Sparkles from 'lucide-react/dist/esm/icons/sparkles';
 import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
 import { VOCABULARY_CLUSTERS } from '../utils/gemini';
 

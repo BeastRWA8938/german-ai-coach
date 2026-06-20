@@ -4,10 +4,8 @@ import Award from 'lucide-react/dist/esm/icons/award';
 import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
 import Calendar from 'lucide-react/dist/esm/icons/calendar';
 import Play from 'lucide-react/dist/esm/icons/play';
-import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
 import BookOpen from 'lucide-react/dist/esm/icons/book-open';
 import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
-import Gauge from 'lucide-react/dist/esm/icons/gauge';
 import CheckCircle2 from 'lucide-react/dist/esm/icons/check-circle-2';
 
 export default function Dashboard({ 

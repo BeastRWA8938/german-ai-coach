@@ -38,9 +38,9 @@ export default function Navbar({ currentLevel, onLevelChange, syncStatus, onOpen
           Settings
         </button>
 
-        <div className={`sync-badge ${syncStatus}`}>
+        <div className={`sync-badge ${syncStatus === 'coming_soon' ? 'coming-soon' : 'local'}`}>
           <span className="sync-dot"></span>
-          {syncStatus === 'synced' ? 'G-Drive Synced' : syncStatus === 'syncing' ? 'Syncing...' : 'Local Only'}
+          {syncStatus === 'coming_soon' ? 'G-Drive (Coming Soon)' : 'Local Only'}
         </div>
       </div>
     </header>

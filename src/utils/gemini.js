@@ -163,6 +163,13 @@ Your response must be a single JSON object strictly conforming to this schema:
   const data = await response.json();
   
   try {
+    if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
+      const finishReason = data.candidates?.[0]?.finishReason;
+      if (finishReason === "SAFETY") {
+        throw new Error("Content generation blocked by Gemini safety filters. Try a different topic.");
+      }
+      throw new Error("Gemini returned an empty or invalid response. Please try again.");
+    }
     const responseText = data.candidates[0].content.parts[0].text;
     const parsedData = JSON.parse(responseText);
     
@@ -170,7 +177,21 @@ Your response must be a single JSON object strictly conforming to this schema:
       throw new Error("Invalid response format from AI model.");
     }
     
-    return parsedData.questions;
+    // Validate subskills against predefined options to prevent progress tracking drop
+    const validSubs = VALID_SUBSKILLS[topicId] || [];
+    const validatedQuestions = parsedData.questions.map(q => {
+      let matchedSubskill = q.subskill;
+      if (!validSubs.includes(matchedSubskill)) {
+        const foundSub = validSubs.find(sub => matchedSubskill?.toLowerCase()?.includes(sub?.toLowerCase()) || sub?.toLowerCase()?.includes(matchedSubskill?.toLowerCase()));
+        matchedSubskill = foundSub || validSubs[0] || 'vocabulary';
+      }
+      return {
+        ...q,
+        subskill: matchedSubskill
+      };
+    });
+    
+    return validatedQuestions;
   } catch (err) {
     console.error("Failed to parse Gemini response:", data, err);
     throw new Error("Could not parse AI-generated questions. Please try again.");
@@ -294,6 +315,13 @@ Your response must be a single JSON object strictly conforming to this schema:
   const data = await response.json();
   
   try {
+    if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
+      const finishReason = data.candidates?.[0]?.finishReason;
+      if (finishReason === "SAFETY") {
+        throw new Error("Content generation blocked by Gemini safety filters. Try a different topic.");
+      }
+      throw new Error("Gemini returned an empty or invalid response. Please try again.");
+    }
     const responseText = data.candidates[0].content.parts[0].text;
     const parsedData = JSON.parse(responseText);
     
@@ -301,7 +329,30 @@ Your response must be a single JSON object strictly conforming to this schema:
       throw new Error("Invalid response format from AI model.");
     }
     
-    return parsedData.questions.map(q => ({ ...q, topicId: q.topic }));
+    const allowedTopicIds = topicList.map(t => t.id);
+    return parsedData.questions.map(q => {
+      // Validate dynamic topic ID
+      let matchedTopic = q.topic;
+      if (!allowedTopicIds.includes(matchedTopic)) {
+        // Fallback to first available or find matching substring
+        const found = allowedTopicIds.find(id => matchedTopic?.toLowerCase()?.includes(id?.toLowerCase()) || id?.toLowerCase()?.includes(matchedTopic?.toLowerCase()));
+        matchedTopic = found || allowedTopicIds[0] || 'family';
+      }
+      
+      // Validate subskill
+      const validSubs = VALID_SUBSKILLS[matchedTopic] || [];
+      let matchedSubskill = q.subskill;
+      if (!validSubs.includes(matchedSubskill)) {
+        const foundSub = validSubs.find(sub => matchedSubskill?.toLowerCase()?.includes(sub?.toLowerCase()) || sub?.toLowerCase()?.includes(matchedSubskill?.toLowerCase()));
+        matchedSubskill = foundSub || validSubs[0] || 'vocabulary';
+      }
+      
+      return {
+        ...q,
+        topicId: matchedTopic,
+        subskill: matchedSubskill
+      };
+    });
   } catch (err) {
     console.error("Failed to parse Gemini response:", data, err);
     throw new Error("Could not parse AI-generated questions. Please try again.");
