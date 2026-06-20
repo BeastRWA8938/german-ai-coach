@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Play from 'lucide-react/dist/esm/icons/play';
 import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
 import XCircle from 'lucide-react/dist/esm/icons/x-circle';
 import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
 import Home from 'lucide-react/dist/esm/icons/home';
-import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
 import BookOpen from 'lucide-react/dist/esm/icons/book-open';
 import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
 import Sparkles from 'lucide-react/dist/esm/icons/sparkles';
@@ -180,9 +179,11 @@ export default function PracticeSession({
             .slice(0, Math.min(numQuestions, topicQuestions.length));
           
           while (selectedQuestions.length < numQuestions) {
+            const pool = topicQuestions.length > 0 ? topicQuestions : DEFAULT_QUESTIONS;
+            const chosen = pool[Math.floor(Math.random() * pool.length)];
             selectedQuestions.push({
-              ...DEFAULT_QUESTIONS[0],
-              id: `pad_${selectedQuestions.length}`,
+              ...chosen,
+              id: `pad_${selectedQuestions.length}_${Date.now()}`,
               topicId: topicId
             });
           }

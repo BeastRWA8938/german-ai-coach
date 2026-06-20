@@ -14,6 +14,11 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
   const [selectedModel, setSelectedModel] = useState(settings.selectedModel || 'gemini-2.5-flash');
   const [syncEnabled, setSyncEnabled] = useState(settings.syncEnabled || false);
 
+  const isInsecureConnection = typeof window !== 'undefined' &&
+    window.location.protocol !== 'https:' &&
+    window.location.hostname !== 'localhost' &&
+    window.location.hostname !== '127.0.0.1';
+
   if (!isOpen) return null;
 
   const handleEscKey = (e) => {
@@ -25,7 +30,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
     onSaveSettings({
       apiKey,
       selectedModel,
-      syncEnabled
+      syncEnabled: false
     });
     onClose();
   };
@@ -77,6 +82,14 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
                   Google AI Studio
                 </a>.
               </small>
+              {isInsecureConnection && apiKey && (
+                <div className="settings-alert warning" style={{ marginTop: '12px' }}>
+                  <AlertCircle size={16} style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span>
+                    <strong>Security Warning:</strong> You are on an insecure HTTP connection. Storing your API key in browser memory over HTTP is vulnerable to exposure. We strongly recommend using <strong>HTTPS</strong>.
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className="form-group">
@@ -105,11 +118,12 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
               <label className="switch-label">
                 <input
                   type="checkbox"
-                  checked={syncEnabled}
+                  checked={false}
                   onChange={(e) => setSyncEnabled(e.target.checked)}
                   className="sync-checkbox"
+                  disabled
                 />
-                <span className="switch-text">Enable Google Drive Sync <span style={{ opacity: 0.7, fontSize: '0.9em' }}>(Coming Soon)</span></span>
+                <span className="switch-text">Google Drive Sync <span style={{ opacity: 0.7, fontSize: '0.9em' }}>(Coming Soon)</span></span>
               </label>
 
               {syncEnabled && (
@@ -117,6 +131,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
                   type="button"
                   onClick={onSyncNow}
                   className="navbar-btn sync-btn-now"
+                  disabled
                 >
                   <RefreshCw size={14} className="spin-on-sync" />
                   Sync Now (Coming Soon)
