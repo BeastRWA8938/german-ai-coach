@@ -214,6 +214,18 @@ docker compose up --build -d
 ```
 The application will then be accessible at `http://localhost:8080`.
 
+### CI/CD Pipeline Automation
+The codebase is configured with automated continuous integration (CI) via GitHub Actions. The workflow configuration is located in `.github/workflows/ci.yml`.
+
+Every push or pull request to the `main` branch triggers:
+1. **Runner Provisioning**: Bootstraps an Ubuntu execution runner.
+2. **Node.js Environment Setup**: Installs Node.js matching requirements and initializes the npm dependency cache.
+3. **Clean Installation**: Executes `npm ci` to fetch packages securely based on the lock file.
+4. **Validation Suite**:
+   - **Linter Execution**: Runs `npm run lint` (uses `oxlint`) to inspect code quality.
+   - **Unit Tests**: Runs `npm run test` to verify stored metrics and storage schemas normalizations.
+   - **Production Bundling**: Runs `npm run build` to verify Vite bundle compiles with no module resolution errors.
+
 ---
 
 ## 7. Version Control Status

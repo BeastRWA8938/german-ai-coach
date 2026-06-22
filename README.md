@@ -46,6 +46,30 @@ docker compose up --build
 
 The container serves the built app through Nginx on `http://localhost:8080`.
 
+## CI/CD Pipeline
+
+The project includes an automated GitHub Actions continuous integration pipeline defined in [.github/workflows/ci.yml](file:///.github/workflows/ci.yml). 
+
+On every push or pull request to the `main` branch, the pipeline automatically:
+1. Provisions a clean Ubuntu runner.
+2. Sets up Node.js.
+3. Installs clean dependencies via `npm ci`.
+4. Runs the linter check (`npm run lint`).
+5. Runs the unit test suite (`npm run test`).
+6. Runs the production build (`npm run build`).
+
+## Deployment & Hosting
+
+### Static Hosting (Vercel, Netlify, GitHub Pages)
+Since this is a client-side React SPA (using a bring-your-own-key model for Gemini API calls), it can be hosted for **free** on CDNs without requiring server-side runtime compute.
+- **Vercel / Netlify**: Connect your GitHub repository to Vercel or Netlify. They will automatically build the site and deploy the `dist/` directory on every push to `main`.
+- **SPA Routing Configuration**: To support page refreshes on sub-routes, ensure rewrite rules to `index.html` are configured (e.g. `vercel.json` rewrites or a `_redirects` file for Netlify).
+
+### Custom Domain Registration
+If you are using the **GitHub Student Developer Pack**, you can claim a free `.me` domain from Namecheap or another domain from Name.com:
+1. Log into your GitHub Student Pack profile and redeem your chosen domain voucher.
+2. In your DNS provider configuration panel (Namecheap/Name.com), add a **CNAME** pointing to your static hosting provider (e.g., `cname.vercel-dns.com` for Vercel) or an **A** record pointing to your server IP.
+
 ## Data And Privacy
 
 - Learning progress is stored locally in browser storage.
