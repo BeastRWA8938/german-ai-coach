@@ -4,13 +4,29 @@ export const SETTINGS_STORAGE_KEY = 'projektdeutsch_settings';
 export const TOPICS_STORAGE_KEY = 'projektdeutsch_topics_v2';
 export const LAST_DECAY_STORAGE_KEY = 'projektdeutsch_last_decay';
 
+export const DEFAULT_MODEL = 'gemini-3.5-flash';
+export const MODEL_OPTIONS = [
+  {
+    value: 'gemini-3.5-flash',
+    label: 'Gemini 3.5 Flash (Latest, Fast)',
+  },
+  {
+    value: 'gemini-3.1-pro-preview',
+    label: 'Gemini 3.1 Pro Preview (Latest, Smarter)',
+  },
+];
+
 export const DEFAULT_SETTINGS = {
   apiKey: '',
-  selectedModel: 'gemini-2.5-flash',
+  selectedModel: DEFAULT_MODEL,
   syncEnabled: false,
 };
 
-const allowedModels = new Set(['gemini-2.5-flash', 'gemini-2.5-pro']);
+const allowedModels = new Set(MODEL_OPTIONS.map((option) => option.value));
+const legacyModelAliases = new Map([
+  ['gemini-2.5-flash', 'gemini-3.5-flash'],
+  ['gemini-2.5-pro', 'gemini-3.1-pro-preview'],
+]);
 
 function getBrowserStorage() {
   if (typeof window === 'undefined' || !window.localStorage) return null;
@@ -74,11 +90,13 @@ export function normalizeSettings(storedSettings) {
     return DEFAULT_SETTINGS;
   }
 
+  const storedModel = typeof storedSettings.selectedModel === 'string'
+    ? legacyModelAliases.get(storedSettings.selectedModel) ?? storedSettings.selectedModel
+    : DEFAULT_MODEL;
+
   return {
     apiKey: typeof storedSettings.apiKey === 'string' ? storedSettings.apiKey : '',
-    selectedModel: allowedModels.has(storedSettings.selectedModel)
-      ? storedSettings.selectedModel
-      : DEFAULT_SETTINGS.selectedModel,
+    selectedModel: allowedModels.has(storedModel) ? storedModel : DEFAULT_MODEL,
     syncEnabled: false,
   };
 }

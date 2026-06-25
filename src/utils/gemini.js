@@ -1,3 +1,5 @@
+import { DEFAULT_MODEL } from './storage.js';
+
 /**
  * Client-side Gemini API Integration for ProjektDeutsch AI (BYOK Model)
  */
@@ -53,7 +55,7 @@ const VALID_SUBSKILLS = {
   passiversatz: ['sein_zu', 'sich_lassen']
 };
 
-export async function generateAiQuestions(level, topicId, topicName, count, apiKey, selectedModel = 'gemini-2.5-flash') {
+export async function generateAiQuestions(level, topicId, topicName, count, apiKey, selectedModel = DEFAULT_MODEL) {
   if (!apiKey) {
     throw new Error("API Key is missing. Please configure it in Settings.");
   }
@@ -198,7 +200,7 @@ Your response must be a single JSON object strictly conforming to this schema:
   }
 }
 
-export async function generateAiSmartQuestions(level, topicList, apiKey, selectedModel = 'gemini-2.5-flash') {
+export async function generateAiSmartQuestions(level, topicList, apiKey, selectedModel = DEFAULT_MODEL) {
   if (!apiKey) {
     throw new Error("API Key is missing. Please configure it in Settings.");
   }

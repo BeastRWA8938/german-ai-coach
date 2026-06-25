@@ -11,6 +11,7 @@ import Award from 'lucide-react/dist/esm/icons/award';
 import Lightbulb from 'lucide-react/dist/esm/icons/lightbulb';
 import { MOCK_QUESTIONS, DEFAULT_QUESTIONS } from '../data/mockQuestions';
 import { generateAiQuestions, generateAiSmartQuestions } from '../utils/gemini';
+import { DEFAULT_MODEL } from '../utils/storage.js';
 
 export default function PracticeSession({ 
   topicId, 
@@ -132,7 +133,7 @@ export default function PracticeSession({
             currentLevel,
             targets,
             apiKey,
-            selectedModel || 'gemini-2.5-flash'
+            selectedModel || DEFAULT_MODEL
           );
         } else {
           // Offline mock practice
@@ -167,7 +168,7 @@ export default function PracticeSession({
             topicName,
             numQuestions,
             apiKey,
-            selectedModel || 'gemini-2.5-flash'
+            selectedModel || DEFAULT_MODEL
           );
           selectedQuestions = generated.map(q => ({ ...q, topicId: topicId }));
         } else {

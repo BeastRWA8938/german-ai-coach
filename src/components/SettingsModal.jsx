@@ -7,11 +7,12 @@ import Database from 'lucide-react/dist/esm/icons/database';
 import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
 import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
 import Save from 'lucide-react/dist/esm/icons/save';
+import { DEFAULT_MODEL, MODEL_OPTIONS } from '../utils/storage.js';
 
 export default function SettingsModal({ isOpen, onClose, settings, onSaveSettings, onSyncNow }) {
   const [apiKey, setApiKey] = useState(settings.apiKey || '');
   const [showKey, setShowKey] = useState(false);
-  const [selectedModel, setSelectedModel] = useState(settings.selectedModel || 'gemini-2.5-flash');
+  const [selectedModel, setSelectedModel] = useState(settings.selectedModel || DEFAULT_MODEL);
   const [syncEnabled, setSyncEnabled] = useState(settings.syncEnabled || false);
 
   const isInsecureConnection = typeof window !== 'undefined' &&
@@ -100,8 +101,11 @@ export default function SettingsModal({ isOpen, onClose, settings, onSaveSetting
                 onChange={(e) => setSelectedModel(e.target.value)}
                 className="settings-select"
               >
-                <option value="gemini-2.5-flash">Gemini 2.5 Flash (Fast, Recommended)</option>
-                <option value="gemini-2.5-pro">Gemini 2.5 Pro (Extremely Smart)</option>
+                {MODEL_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
