@@ -39,13 +39,13 @@ test('readJsonStorage falls back and removes invalid JSON', () => {
 test('normalizeSettings preserves valid BYOK settings and disables unfinished sync', () => {
   const result = normalizeSettings({
     apiKey: 'gemini-key',
-    selectedModel: 'gemini-3.1-pro-preview',
+    selectedModel: 'gemini-2.5-flash',
     syncEnabled: true,
   });
 
   assert.deepEqual(result, {
     apiKey: 'gemini-key',
-    selectedModel: 'gemini-3.1-pro-preview',
+    selectedModel: 'gemini-2.5-flash',
     syncEnabled: false,
   });
 });
@@ -53,7 +53,7 @@ test('normalizeSettings preserves valid BYOK settings and disables unfinished sy
 test('normalizeSettings upgrades legacy Gemini model aliases', () => {
   const result = normalizeSettings({
     apiKey: 'gemini-key',
-    selectedModel: 'gemini-2.5-flash',
+    selectedModel: 'gemini-3.1-pro-preview',
   });
 
   assert.equal(result.selectedModel, 'gemini-3.5-flash');

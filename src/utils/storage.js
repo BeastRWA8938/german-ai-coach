@@ -11,8 +11,8 @@ export const MODEL_OPTIONS = [
     label: 'Gemini 3.5 Flash (Latest, Fast)',
   },
   {
-    value: 'gemini-3.1-pro-preview',
-    label: 'Gemini 3.1 Pro Preview (Latest, Smarter)',
+    value: 'gemini-2.5-flash',
+    label: 'Gemini 2.5 Flash (Lower Latency)',
   },
 ];
 
@@ -24,8 +24,8 @@ export const DEFAULT_SETTINGS = {
 
 const allowedModels = new Set(MODEL_OPTIONS.map((option) => option.value));
 const legacyModelAliases = new Map([
-  ['gemini-2.5-flash', 'gemini-3.5-flash'],
-  ['gemini-2.5-pro', 'gemini-3.1-pro-preview'],
+  ['gemini-3.1-pro-preview', 'gemini-3.5-flash'],
+  ['gemini-2.5-pro', 'gemini-3.5-flash'],
 ]);
 
 function getBrowserStorage() {
